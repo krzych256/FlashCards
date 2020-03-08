@@ -19,11 +19,11 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+//    @Override
+//    @Bean
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,8 +32,13 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource);
     }
 
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(4);
     }
 }

@@ -13,16 +13,21 @@ public class Box {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String name;
 
+    @ManyToMany
+    @JoinTable(name = "profile_box",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "box_id")
+    )
+    private List<Profile> profiles = new ArrayList<>();
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn
     private Category category;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "box")
+    @ManyToMany(mappedBy = "boxes")
     private List<FlashCard> flashCards = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
 }

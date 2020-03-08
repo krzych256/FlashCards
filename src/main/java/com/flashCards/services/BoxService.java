@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface BoxService {
 
-    BoxDTO findById(long id);
+    List<BoxDTO> getAllBoxes();
 
-    List<BoxDTO> findAll();
+    BoxDTO getBoxById(Long id);
 
-    BoxDTO save(BoxDTO boxDTO);
+    BoxDTO createNewBox(BoxDTO boxDTO);
 
-    void delete(BoxDTO boxDTO);
+    BoxDTO updateOrCreateBox(Long id, BoxDTO boxDTO);
+
+    void deleteById(Long id);
 }

@@ -13,6 +13,7 @@ public interface BoxMapper {
 
     BoxDTO boxToBoxDTO(Box box);
 
-    @Mapping( target = "profile", ignore = true)
+    @Mapping(source = "categoryDTO", target = "category")
+    @Mapping(source = "flashCardsDTO", target = "flashCards")
     Box boxDTOToBox(BoxDTO boxDTO);
 }

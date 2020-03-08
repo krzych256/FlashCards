@@ -1,7 +1,5 @@
 package com.flashCards.model;
 
-import com.flashCards.domain.Category;
-import com.flashCards.domain.FlashCard;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -12,6 +10,6 @@ public class BoxDTO {
 
     private Long id;
     private String name;
-    private Category category;
-    private List<FlashCard> flashCards = new ArrayList<>();
+    private CategoryDTO categoryDTO;
+    private List<FlashCardDTO> flashCardsDTO = new ArrayList<>();
 }

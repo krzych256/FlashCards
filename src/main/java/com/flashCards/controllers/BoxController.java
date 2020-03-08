@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(BoxController.BASE_URL)
-@ResponseStatus(HttpStatus.OK)
 public class BoxController {
 
     public static final String BASE_URL = "/api/boxes";
@@ -21,22 +20,31 @@ public class BoxController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<BoxDTO> getAllBoxes() {
-        return boxService.findAll();
+        return boxService.getAllBoxes();
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public BoxDTO getBoxById(@PathVariable Long id) {
-        return boxService.findById(id);
+        return boxService.getBoxById(id);
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public BoxDTO createNewBox(@RequestBody BoxDTO boxDTO) {
-        return boxService.save(boxDTO);
+        return boxService.createNewBox(boxDTO);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public BoxDTO updateBox(@PathVariable Long id, @RequestBody BoxDTO boxDTO) {
+        return boxService.updateOrCreateBox(id, boxDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deleteBox(@PathVariable Long id) {
-        boxService.delete(boxService.findById(id));
+        boxService.deleteById(id);
     }
 }
